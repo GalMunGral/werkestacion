@@ -1,18 +1,9 @@
-.app {
-  user-select: none;
-  position: fixed;
-  top: 0; bottom: 0; left: 0; right: 0;
-  display: grid;
-  grid-template-columns: 400px auto;
-  grid-template-rows: auto;
-  grid-template-areas:
-    "left right";
+#editor {
+  width: calc(100% - 2 * 10px);
+  height: calc(100% - 2 * 50px);
+  margin: 10px;
 }
-.left {
-  background: black;
-  grid-area: left;
-}
-.right {
-  background: gray;
-  grid-area: right;
+iframe {
+  height: 100vh;
+  width: 100vw;
 }
