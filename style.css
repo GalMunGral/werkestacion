@@ -1,9 +1,0 @@
-#editor {
-  width: calc(100% - 2 * 10px);
-  height: calc(100% - 2 * 50px);
-  margin: 10px;
-}
-iframe {
-  height: 100vh;
-  width: 100vw;
-}
