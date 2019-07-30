@@ -46,17 +46,42 @@ app.on('ready', () => {
   });
 
   const menu = Menu.buildFromTemplate([{
-    label: app.getName()
+    label: app.getName(),
+    submenu: [{
+      label: 'Open DevTools',
+      accelerator: 'Alt+CmdOrCtrl+I',
+      role: 'toggleDevTools'
+    }, {
+      label: 'Enter Full Screen',
+      accelerator: 'CmdOrCtrl+Shift+F',
+      role: 'togglefullscreen'
+    },{
+      label: 'Reload',
+      accelerator: 'CmdOrCtrl+R',
+      role: 'reload'
+    }]
   },{
+    label: 'File',
+    submenu: [{
+      label: 'Save',
+      accelerator: 'CmdOrCtrl+S',
+      click: () => win.webContents.send('save-file')
+    }, {
+      label: 'Select All',
+      accelerator: 'CmdOrCtrl+A',
+      click: () => win.webContents.send('select-all')
+    }]
+  }, {
     label: 'Go to',
     submenu: [{
       label: 'Parent Directory',
       accelerator: 'CmdOrCtrl+Left',
       click: () => win.webContents.send('navigate-to-parent')
     }]
-  }])
+  }]);
   Menu.setApplicationMenu(menu);
 });
+
 
 // ipcMain.on('save', (e, fileContent) => {
 //   console.log(fileContent);

@@ -87,7 +87,7 @@ const Explorer = ({
   path: { dir, files, selectedFile },
   setPath
 }) => {
-  curDirectory =
+  curDirectory = dir;
   setPathFn = setPath;
   return (
     <Column>
