@@ -4,7 +4,9 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "concurrently 'webpack-dev-server' 'electron .'"
+    "dev": "concurrently 'webpack-dev-server' 'electron .'",
+    "build": "webpack --mode=production",
+    "start": "electron ."
   },
   "author": "",
   "license": "ISC",

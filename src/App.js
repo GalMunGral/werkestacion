@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Explorer from './Explorer';
+import Editor from './Editor';
+
 const fs = window.require('fs');
 const os = window.require('os');
 
@@ -10,19 +12,24 @@ const SplitScreen = styled.div`
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: 350px auto;
-  grid-template-areas: "left main"
+  grid-template-areas: "left main";
+  & ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Left = styled.div`
   grid-area: left;
-  height: 100%;
-  background: gray;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background: #222222;
 `;
 
 const Main = styled.div`
   grid-area: main;
-  height: 100%;
-  background: black;
+  height: 100vh;
+  background: #222222;
 `;
 
 const App = () => {
@@ -32,21 +39,20 @@ const App = () => {
   console.debug(path)
   if (!path.dir) {
     fs.readdir(os.homedir(), { withFileTypes: true }, (err, files) => {
-      if (err) { console.log(err); return; }
+      if (err) { console.debug(err); return; }
       setPath({
         dir: os.homedir(), files,
-        selectedFile: null
+        selectedFile: files[0]
       });
     })
   };
 
   return (
     <SplitScreen>
-      <Left><Explorer path={path} /></Left>
-      <Main>hey</Main>
+      <Left><Explorer path={path} setPath={setPath}/></Left>
+      <Main><Editor path={path}/></Main>
     </SplitScreen>
   );
 }
-  
 
 export default App;
